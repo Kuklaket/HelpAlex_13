@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 6dfc3c9abc412254f80c9cc14f998c22
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _rogue: {instanceID: 0}
+  - _alarm: {instanceID: 0}
+  - _door: {instanceID: 0}
+  - _actionRogue: {instanceID: 0}
+  - _actionAlarm: {instanceID: 0}
+  - _actionDoor: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
