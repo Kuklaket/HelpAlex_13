@@ -6,10 +6,10 @@ public class Alarm : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private AudioSource _sos;
 
-    private Coroutine _upVolume;
     private float _volumeMinimum = 0.3f;
     private float _volumeMaximum = 0.9f;
     private bool _isOn = false;
+    private Coroutine _upVolume;
 
     public void ChangeAlarmStatus()
     {

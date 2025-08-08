@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class Rogue : MonoBehaviour
@@ -6,6 +5,7 @@ public class Rogue : MonoBehaviour
     [SerializeField] private float _walkSpeed = 2f;
     [SerializeField] private float _runSpeed = 6f;
     [SerializeField] private float _rotationAngle = 180f;
+    [SerializeField] private Door _door;
 
     private float _currentSpeed;
     private bool _isFacingRight = true;
@@ -30,6 +30,12 @@ public class Rogue : MonoBehaviour
     public void ToggleMovement()
     {
         _currentSpeed = Mathf.Approximately(_currentSpeed, 0f) ? (_isFacingRight ? _walkSpeed : _runSpeed) : 0f;
+    }
+
+    public void CompleteSequence()
+    {
+        ToggleMovement();
+        _door.OpenDoor();
     }
 
     private void Move()

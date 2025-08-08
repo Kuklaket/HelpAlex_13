@@ -1,61 +1,20 @@
-using System.Collections;
+using System;
 using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
-    [SerializeField] private Rogue _rogue;
     [SerializeField] private Alarm _alarm;
-    [SerializeField] private Door _door;
-    [SerializeField] private float _delayDuration = 1f;
 
-    private float _timer;
-    private bool _isTimerRunning;
-    private bool _isFirstEntry = true;
+    public event Action RogueEntered;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.TryGetComponent<Rogue>(out _))
-            return;
-
-        if (_isFirstEntry)
-        {
-            StartInteractionSequence();
-        }
-        else
-        {
-            _alarm.ChangeAlarmStatus();
-        }
+        if (collision.TryGetComponent<Rogue>(out _))
+             RogueEntered?.Invoke();         
     }
 
-    private void StartInteractionSequence()
+    public void ResetAlarm()
     {
-        _isFirstEntry = false;
-        _isTimerRunning = true;
-        _timer = 0f;
-
-        _rogue.ToggleMovement();
-        StartCoroutine(DelaySequence());
-    }
-
-    private IEnumerator DelaySequence()
-    {
-        while (_timer < _delayDuration && _isTimerRunning)
-        {
-            _timer += Time.deltaTime;
-            yield return null;
-        }
-
-        if (_isTimerRunning)
-        {
-            CompleteSequence();
-        }
-    }
-
-    private void CompleteSequence()
-    {
-        _isTimerRunning = false;
-        _rogue.ToggleMovement();
         _alarm.ChangeAlarmStatus();
-        _door.OpenDoor();
     }
 }
